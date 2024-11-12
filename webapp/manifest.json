@@ -1,0 +1,216 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "manageengagements",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.15.3",
+      "toolsId": "dad11651-d438-401c-9c30-24e4504377c8"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/catalog/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "annotation"
+          ],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      },
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "Engagements-Manage": {
+          "semanticObject": "Engagements",
+          "action": "Manage",
+          "title": "{{flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.130.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {},
+        "sap.f": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "manageengagements.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {
+        "flexibleColumnLayout": {
+          "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
+          "defaultThreeColumnLayoutType": "ThreeColumnsMidExpanded"
+        },
+        "routerClass": "sap.f.routing.Router"
+      },
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "EngagementsDraftList",
+          "target": [
+            "EngagementsDraftList"
+          ]
+        },
+        {
+          "pattern": "EngagementsDraft({key}):?query:",
+          "name": "EngagementsDraftObjectPage",
+          "target": [
+            "EngagementsDraftList",
+            "EngagementsDraftObjectPage"
+          ]
+        }
+      ],
+      "targets": {
+        "EngagementsDraftList": {
+          "type": "Component",
+          "id": "EngagementsDraftList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/EngagementsDraft",
+              "variantManagement": "Page",
+              "navigation": {
+                "EngagementsDraft": {
+                  "detail": {
+                    "route": "EngagementsDraftObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable",
+                    "selectionMode": "Multi"
+                  },
+                  "columns": {
+                    "DataField::ea::name": {
+                      "width": "30%"
+                    },
+                    "DataField::CustomerName": {
+                      "width": "20%"
+                    },
+                    "DataField::CRMId": {
+                      "width": "15%"
+                    },
+                    "DataField::isActive": {
+                      "width": "15%"
+                    },
+                    "DataField::isLead": {
+                      "width": "15%"
+                    },
+                    "DataField::leadEA": {
+                      "width": "20%"
+                    },
+                    "DataField::comment": {
+                      "width": "30%"
+                    }
+                  }
+                }
+              },
+              "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#table",
+              "initialLoad": "Enabled"
+            }
+          },
+          "controlAggregation": "beginColumnPages",
+          "contextPattern": ""
+        },
+        "EngagementsDraftObjectPage": {
+          "type": "Component",
+          "id": "EngagementsDraftObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/EngagementsDraft"
+            }
+          },
+          "controlAggregation": "midColumnPages",
+          "contextPattern": "/EngagementsDraft({key})"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+      "type": "XML",
+      "async": true,
+      "id": "appRootView"
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "manageengagements"
+  }
+}
