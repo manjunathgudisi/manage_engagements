@@ -121,6 +121,17 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="ea/name"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="TypeName" String=""/>
+                        <PropertyValue Property="TypeNamePlural" String=""/>
+                    </Record>
+                </Annotation>
             </Annotations>
             <Annotations Target="CatalogService.EAs/name">
                 <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/ReadOnly"/>
