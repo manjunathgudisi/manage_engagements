@@ -149,7 +149,20 @@
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "tableSettings": {
                     "type": "ResponsiveTable",
-                    "selectionMode": "Multi"
+                    "selectionMode": "Multi",
+                    "enableExport": true,
+                    "selectAll": true,
+                    "personalization": {
+                      "filter": true
+                    },
+                    "quickVariantSelection": {
+                      "showCounts": true,
+                      "paths": [
+                        {
+                          "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#table"
+                        }
+                      ]
+                    }
                   },
                   "columns": {
                     "DataField::ea::name": {
@@ -203,6 +216,15 @@
       "type": "XML",
       "async": true,
       "id": "appRootView"
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ListReport.ListReportController#manageengagements::EngagementsDraftList": {
+            "controllerName": "manageengagements.ext.controller.EngagementsDraftController"
+          }
+        }
+      }
     }
   },
   "sap.fiori": {
